@@ -1,0 +1,38 @@
+version: "3.9"
+services:
+  postgres-library:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "OVCHINNIKOVA_205"
+      POSTGRES_USER: "OVCHINNIKOVA_205"
+      POSTGRES_PASSWORD: "OVCHINNIKOVA_205"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/library:/docker-entrypoint-initdb.d
+      - ./db-library:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  postgres-station:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "OVCHINNIKOVA_205"
+      POSTGRES_USER: "OVCHINNIKOVA_205"
+      POSTGRES_PASSWORD: "OVCHINNIKOVA_205"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/station:/docker-entrypoint-initdb.d
+      - ./db-station:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+  postgres-hospital:
+    image: postgres:14.5
+    environment:
+      POSTGRES_DB: "OVCHINNIKOVA_205"
+      POSTGRES_USER: "OVCHINNIKOVA_205"
+      POSTGRES_PASSWORD: "OVCHINNIKOVA_205"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/scripts/hospital:/docker-entrypoint-initdb.d
+      - ./db-hospital:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
